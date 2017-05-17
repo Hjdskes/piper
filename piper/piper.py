@@ -3,11 +3,11 @@
 
 from ratbagd import *
 import os
-import pkg_resources
 
 import gi
+gi.require_version('Gio', '2.0')
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
+from gi.repository import Gtk, Gio
 
 class Piper(Gtk.Window):
 
@@ -70,7 +70,7 @@ class Piper(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="Piper")
         main_window = Gtk.Builder()
-        main_window.add_from_file(pkg_resources.resource_filename("piper", "piper.ui"))
+        main_window.add_from_resource("/org/freedesktop/Piper/piper.ui")
         self._builder = main_window;
         self._signal_ids = []
         self._initialized = False
@@ -89,10 +89,11 @@ class Piper(Gtk.Window):
 
         # load the right image
         svg = self._ratbag_device.svg_path
-        if not os.path.isfile(svg):
-            svg = pkg_resources.resource_filename("piper", "404.svg")
         img = main_window.get_object("piper-image-device")
-        img.set_from_file(svg)
+        if not os.path.isfile(svg):
+            img.set_from_resource("/org/freedesktop/Piper/404.svg")
+        else:
+            img.set_from_file(svg)
 
         # init the current profile's data
         p = self._current_profile
@@ -169,12 +170,12 @@ class Piper(Gtk.Window):
         if len(ratbag.devices) > 1:
             print("Ooops, can't deal with more than one device. My bad.")
             for d in ratbag.devices[1:]:
-                print("Ignoring device {}".format(d.description))
+                print("Ignoring device {}".format(d.name))
 
         d = ratbag.devices[0]
         p = d.profiles
         if len(p) == 1 and len(p[0].resolutions) == 1:
-            self._show_error("Device {} does not support switchable resolutions".format(d.description))
+            self._show_error("Device {} does not support switchable resolutions".format(d.name))
             return None
 
         return d
@@ -461,11 +462,3 @@ class PiperImage(Gtk.EventBox):
     def on_button_clicked(self, widget, event):
         print(event.x)
 
-def main():
-    import signal
-    signal.signal(signal.SIGINT, signal.SIG_DFL)
-    win = Piper()
-    Gtk.main()
-
-if __name__ == '__main__':
-    main()

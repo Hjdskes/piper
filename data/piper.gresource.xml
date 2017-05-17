@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+	<gresource prefix="/org/freedesktop/Piper">
+		<file preprocess="xml-stripblanks">piper.ui</file>
+		<file>404.svg</file>
+	</gresource>
+</gresources>
