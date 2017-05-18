@@ -1,0 +1,27 @@
+{
+    "app-id": "org.freedesktop.Piper",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.24",
+    "sdk": "org.gnome.Sdk",
+    "command": "piper",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland"
+    ],
+    "modules": [
+        {
+            "name": "piper",
+	    "buildsystem": "meson",
+	    "builddir": true,
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/Hjdskes/piper.git",
+                    "branch": "flatpak",
+                    "commit": "3340a23a2ae4125b6d7cf61c0c4b8c073c0e271d"
+                }
+            ]
+        }
+    ]
+}
