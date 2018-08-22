@@ -1,0 +1,4 @@
+option('ignore-ratbagd-dependency',
+       type: 'boolean',
+       value: false,
+       description: 'Ignore missing ratbagd dependency [default=false]')
