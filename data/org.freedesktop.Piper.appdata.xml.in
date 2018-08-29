@@ -3,6 +3,7 @@
   <id>org.freedesktop.Piper</id>
   <metadata_license>FSFAP</metadata_license>
   <project_license>GPL-2.0+</project_license>
+  <content_rating type="oars-1.0" />
   <name>Piper</name>
   <summary>Configurable mouse configuration utility</summary>
   <description>
@@ -18,6 +19,12 @@
       installed and running when Piper is launched.
     </p>
   </description>
+
+  <kudos>
+    <kudo>AppMenu</kudo>
+    <kudo>HiDpiIcon</kudo>
+    <kudo>ModernToolkit</kudo>
+  </kudos>
 
   <launchable type="desktop-id">org.gnome.Piper.desktop</launchable>
 
@@ -38,6 +45,7 @@
 
   <url type="homepage">https://github.com/libratbag/piper/</url>
   <url type="bugtracker">https://github.com/libratbag/piper/issues</url>
+  <url type="help">https://github.com/Hjdskes/gcolor3/issues</url>
   <project_group>GNOME</project_group>
 
   <translation type="gettext">piper</translation>
@@ -47,6 +55,6 @@
   </provides>
 
   <releases>
-    <release version="@version@" />
+    <release version="0.2.901" date="2018-07-16"/>
   </releases>
 </component>
